@@ -126,7 +126,7 @@ class ReturningState : ParticleState {
 
 	public override void update(UserParticle particle){
 		particle.rigidbody.detectCollisions = false;
-		particle.SpringTowardPosition(particle.originPlatform.ParticleOriginalLocation(particle.xPositionInPlatform, particle.zPositionInPlatform));
+		particle.transform.position = Vector3.Lerp (particle.transform.position, particle.originPlatform.ParticleOriginalLocation (particle.xPositionInPlatform, particle.zPositionInPlatform), 0.1f);
 		particle.transform.rotation = Quaternion.Lerp (particle.transform.rotation, Quaternion.AngleAxis(0, Vector3.zero), Time.time * 0.1f);
 
 		if (Vector3.Distance(particle.transform.position, particle.originPlatform.ParticleOriginalLocation(particle.xPositionInPlatform, particle.zPositionInPlatform)) < 0.3f){
